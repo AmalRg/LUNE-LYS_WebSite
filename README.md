@@ -1,4 +1,4 @@
-# 🌙 LUNE & LYS - E-commerce Website
+# 🌙✨ LUNE & LYS - E-commerce Website
 
 **LUNE & LYS** is a dynamic e-commerce website for selling accessories, featuring both a customer and an admin interface.
 
