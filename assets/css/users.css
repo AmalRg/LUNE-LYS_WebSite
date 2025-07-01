@@ -1,0 +1,334 @@
+/* users.css */
+
+/* General page header for users */
+.users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.users-header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+.subtitle {
+    color: #777;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    font-size: 0.95em;
+}
+
+/* Add User Button */
+.add-user-btn {
+    background-color: #6a0dad; /* Purple color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+.add-user-btn:hover {
+    background-color: #5a0a99; /* Darker purple on hover */
+}
+
+/* Alert Messages (reused from products.css or dashboard.css, included here for completeness) */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* User List Container */
+.user-list {
+    display: grid;
+    gap: 20px;
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+}
+
+/* User Card */
+.user-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-icon-wrapper {
+    background-color: #f0f0f0; /* Light background for the icon */
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.user-icon-wrapper .fa-user {
+    color: #6a0dad; /* Purple icon */
+    font-size: 24px;
+}
+
+.user-details {
+    flex-grow: 1; /* Take up available space */
+}
+
+.user-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.user-details p {
+    margin: 0;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.user-status {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 10px; /* Space from username */
+}
+.user-status.admin {
+    background-color: #d4edda; /* Light green for admin */
+    color: #155724; /* Darker green */
+}
+.user-status.regular {
+    background-color: #e0e0e0; /* Light gray for regular user */
+    color: #555;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s ease;
+}
+
+.edit-btn:hover {
+    color: #6a0dad; /* Purple on hover */
+}
+
+.delete-btn {
+    color: #dc3545; /* Red for delete */
+}
+
+.delete-btn:hover {
+    color: #c82333;
+}
+
+/* --- Modal Styles (reused from products.css or dashboard.css, included here for completeness) --- */
+
+.modal {
+    display: none; /* Crucial: Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* Use 'flex' when displaying to center content */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    width: 90%; /* Adjust as needed */
+    max-width: 500px; /* Max width for user modals, slightly smaller */
+    animation: fadeIn 0.3s ease-out; /* Optional: fade-in animation */
+    position: relative; /* For positioning close button */
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+/* Form Styles within Modals */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #6a0dad;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto; /* Override 100% width */
+    transform: scale(1.2); /* Make checkbox slightly larger */
+}
+
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-cancel, .btn-create {
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-cancel {
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+}
+
+.btn-cancel:hover {
+    background-color: #d0d0d0;
+}
+
+.btn-create {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+}
+
+.btn-create:hover {
+    background-color: #5a0a99;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .users-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .add-user-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .user-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .user-actions {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+}

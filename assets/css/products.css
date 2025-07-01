@@ -1,0 +1,406 @@
+/* products.css */
+
+/* General page layout adjustments (optional, might be in dashboard.css too) */
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.products-header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+.subtitle {
+    color: #777;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    font-size: 0.95em;
+}
+
+/* Add Product Button */
+.add-product-btn {
+    background-color: #6a0dad; /* A nice purple */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.add-product-btn:hover {
+    background-color: #5a0a99; /* Darker purple on hover */
+}
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Product List Container */
+.product-list {
+    display: grid;
+    gap: 20px;
+    /* You can adjust columns based on screen size if needed */
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+}
+
+/* Product Card */
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-wrapper {
+    width: 80px; /* Fixed size for the image container */
+    height: 80px; /* Fixed size for the image container */
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure image doesn't overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Fallback background */
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Or 'cover' if you want it to fill and crop */
+    display: block; /* Remove extra space below image */
+}
+
+.product-details {
+    flex-grow: 1; /* Take up available space */
+}
+
+.product-name-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.product-details h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.product-status {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.product-status.active {
+    background-color: #e6ffe6; /* Light green */
+    color: #28a745; /* Darker green */
+}
+
+.product-status.inactive {
+    background-color: #ffe6e6; /* Light red */
+    color: #dc3545; /* Darker red */
+}
+
+.product-status.inconnu { /* For the default 'Inconnu' if status is missing */
+    background-color: #f0f0f0;
+    color: #888;
+}
+
+.product-meta {
+    margin: 0;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.product-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.product-price {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s ease;
+}
+
+.edit-btn:hover {
+    color: #6a0dad; /* Purple on hover */
+}
+
+.delete-btn {
+    color: #dc3545; /* Red for delete */
+}
+
+.delete-btn:hover {
+    color: #c82333;
+}
+
+/* --- Modal Styles --- */
+
+.modal {
+    display: none; /* Crucial: Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* Use 'flex' when displaying to center content */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 25px; /* Réduit le padding de 30px à 25px */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    width: 90%; /* Ajustement peut rester */
+    max-width: 600px; /* Réduit la largeur maximale de 700px à 600px */
+    animation: fadeIn 0.3s ease-out; /* Optional: fade-in animation */
+    position: relative; /* For positioning close button */
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #777;
+    margin-bottom: 20px; /* Réduit la marge en dessous du paragraphe */
+}
+
+/* Form Styles within Modals */
+.form-row {
+    display: flex;
+    gap: 15px; /* Réduit le gap entre les éléments de la ligne */
+    margin-bottom: 10px; /* Réduit la marge en dessous de la ligne */
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 10px; /* Réduit la marge en dessous du groupe de formulaire */
+}
+
+.form-group.full-width {
+    flex: none;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px; /* Réduit la marge en dessous du label */
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px; /* Réduit le padding des inputs */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #6a0dad;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 70px; /* Réduit la hauteur minimale du textarea */
+}
+
+/* Style for current image preview in edit modal */
+.current-image-preview {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 8px; /* Réduit le padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px; /* Réduit la hauteur minimale */
+    background-color: #f9f9f9;
+    margin-top: 5px;
+    margin-bottom: 10px; /* Réduit la marge */
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.current-image-preview img {
+    max-width: 100%;
+    max-height: 70px; /* Réduit la hauteur maximale de l'image */
+    object-fit: contain;
+    display: block;
+}
+
+.current-image-preview .no-image-text {
+    color: #888;
+    font-style: italic;
+    font-size: 0.9em; /* Légèrement plus petit */
+}
+
+.form-text-muted {
+    font-size: 0.8em; /* Légèrement plus petit */
+    color: #777;
+    margin-top: 3px; /* Réduit la marge */
+    display: block;
+}
+
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Réduit le gap entre les boutons */
+    margin-top: 20px; /* Réduit la marge au-dessus des boutons */
+}
+
+.btn-cancel, .btn-create {
+    padding: 10px 20px; /* Réduit le padding des boutons */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em; /* Légèrement plus petit */
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-cancel {
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+}
+
+.btn-cancel:hover {
+    background-color: #d0d0d0;
+}
+
+.btn-create {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+}
+
+.btn-create:hover {
+    background-color: #5a0a99;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .product-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product-actions {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .add-product-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    /* Adjusted modal max-width for smaller screens if needed */
+    .modal-content {
+        max-width: 95%; /* Allow it to take more width on very small screens */
+    }
+}
